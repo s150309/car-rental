@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel CRUD App</title>
+	<title>Wypożyczalnia samochodów</title>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.5/flatly/bootstrap.min.css" rel="stylesheet">
 	<style>
@@ -29,7 +29,7 @@
 
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-
+                    <a class="navbar-brand text-right" href="/cars">Samochody</a>
 				</ul>
 			</div>
 
@@ -43,7 +43,7 @@
 	<hr/>
 
 	<div class="container">
-	    &copy; {{ date('Y') }}. Program napisany przez: Bartłomiej Starowicz
+	    &copy; {{ date('Y') }}. Program napisany przez: Bartłomiej Starowicz i Artur Spórna
 	    <br/>
 	</div>
 
