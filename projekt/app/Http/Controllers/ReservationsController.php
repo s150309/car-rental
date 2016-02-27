@@ -48,7 +48,74 @@ class ReservationsController extends Controller
     }
     
     
-   
+        
+        public function execute(Request $request)
+    {
+            
+            
+         
+            
+           $czas_teraz = Carbon::now();
+            
+     
+           $data_od = Carbon::parse($request->input('data_od'));
+           $data_do = Carbon::parse($request->input('data_do'));
+           $wypozyczenie_ile_dni = $data_od->diffInDays($data_do) + 1;
+           
+           $samochod_id = $request->input('car_id');
+           $imie = $request->input('imie');
+           $nazwisko = $request->input('nazwisko');
+           $email = $request->input('email');
+           
+           $samochod = Car::find($samochod_id);
+           
+           $cena_dzien = $samochod->cena_dzien;
+           
+           
+           $zaplata_lacznie = $cena_dzien * $wypozyczenie_ile_dni;
+           
+           
+           
+           $rezerwacja = new Reservation();
+           
+           $rezerwacja->imie = $imie;
+           $rezerwacja->nazwisko = $nazwisko;
+           $rezerwacja->email = $email;
+           $rezerwacja->data_od = $data_od;
+           $rezerwacja->data_do = $data_do;
+           $rezerwacja->moment_rezerwacji = $czas_teraz;
+           $rezerwacja->wypozyczono = false;
+           $rezerwacja->samochod_id = $samochod_id;
+           $rezerwacja->do_zaplaty_lacznie = $zaplata_lacznie;
+           
+           $rezerwacja->save();
+           
+
+           
+
+           
+           $dotpay = array();
+           $dotpay['id'] = "721123";
+           $dotpay['lang'] = "pl";
+           $dotpay['opis'] = "Wypożyczenie samochodu";
+           $dotpay['id_rezerwacji'] = $rezerwacja->id;
+           $dotpay['type'] = "1";
+           $dotpay['txtguzik'] = "Powrót do wypożyczalni";
+           $dotpay['URLC'] = "http://rysinski.pl/realise_order";
+           $dotpay['kwota'] = $zaplata_lacznie;
+           $dotpay['samochod'] = $samochod;
+           
+           
+           $request->request->add($dotpay);
+           
+           $input = $request->all();
+           
+           return view('reservations.execute', compact('input'));
+
+
+
+           
+    }
     
     
 
