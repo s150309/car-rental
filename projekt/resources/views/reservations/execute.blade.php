@@ -30,7 +30,7 @@
 
 <input type=hidden name="txtguzik" value="Powrót do serwisu">
 
-<input type=hidden name="URLC" value="http://rysinski.pl/realise_order">
+<input type=hidden name="URLC" value="http://rent-a-car.esy.es/realise_order">
 
 <input type="hidden" name="kwota" value="{{$input['kwota']}}" size="15">
 <input type="submit" class="btn btn-success" value="Wykonaj płatność" name="b1"></td>
