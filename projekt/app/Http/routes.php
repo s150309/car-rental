@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +29,17 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 
+Route::post('realise_order', 'HomeController@realise_order');
+
+
+Route::group(['middleware' => ['web']], function () {
+Route::get('reservations/create/{id}', 'ReservationsController@create');
+});
+
+
+
 Route::group(['middleware' => ['web']], function () {
 	Route::resource('cars', 'CarsController');
 });
+
+
